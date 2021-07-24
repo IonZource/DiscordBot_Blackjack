@@ -97,10 +97,19 @@ def main():
                     break
 
                 if player_in:
+
+                    
                     await message.channel.send(
                         'Hit or stay? (Hit = 1, Stay = 0)')
                     msg = await client.wait_for('message')
+
+                    while (msg.content != '1') or (msg.content != '0'):
+                      await message.channel.send(
+                        'Hit or stay? (Hit = 1, Stay = 0)')
+                      msg = await client.wait_for('message')
+                      
                     response = int(msg.content)
+
                     # If the player asks to be hit, take the first card from the top of
                     # deck and add it to their hand. If they ask to stay, change
                     # player_in to false, and move on to the dealer's hand.
